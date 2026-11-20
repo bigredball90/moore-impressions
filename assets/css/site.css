@@ -36,6 +36,13 @@
 
 html {
   scroll-behavior: smooth;
+  /* keep #quote and other anchors from landing under the sticky header */
+  scroll-padding-top: 132px;
+}
+@media (max-width: 900px) {
+  html {
+    scroll-padding-top: 100px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -225,7 +232,12 @@ textarea:focus-visible {
 
 /* ---------- Header (matches live site) ---------- */
 
+/* Frozen to the top while the page scrolls */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--black);
   border-bottom: 1px solid var(--line);
 }
 .site-header .wrap {
@@ -344,6 +356,10 @@ textarea:focus-visible {
   }
   .site-nav.is-open {
     display: block;
+    /* the header is sticky, so a long open menu scrolls inside itself */
+    max-height: calc(100vh - 90px);
+    max-height: calc(100dvh - 90px);
+    overflow-y: auto;
   }
   .site-nav ul {
     flex-direction: column;

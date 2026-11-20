@@ -1907,3 +1907,233 @@ textarea:focus-visible {
 .compare__tag {
   border-radius: 10px;
 }
+
+/* ==========================================================
+   Demo only: "Edit text" (assets/js/edit.js)
+   ========================================================== */
+
+.mi-edit-fab {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--black);
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 2px var(--black);
+}
+.mi-edit-fab:hover {
+  background: #ffe04d;
+}
+.mi-edit-fab[hidden] {
+  display: none;
+}
+.mi-edit-fab svg {
+  width: 17px;
+  height: 17px;
+}
+.mi-edit-count {
+  min-width: 22px;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: var(--black);
+  color: var(--yellow);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-align: center;
+}
+.mi-edit-count[hidden] {
+  display: none;
+}
+
+.mi-edit-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 900;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 20px;
+  padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom));
+  background: #111114;
+  border-top: 3px solid var(--yellow);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.6);
+}
+.mi-edit-bar[hidden] {
+  display: none;
+}
+.mi-edit-status {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--white);
+}
+.mi-edit-actions,
+.mi-send__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mi-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border: 1.5px solid var(--white);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.mi-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.mi-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.mi-btn--send {
+  border-color: var(--cyan);
+  background: var(--cyan);
+  color: var(--black);
+}
+.mi-btn--send:hover {
+  background: #33cdef;
+}
+.mi-btn--done {
+  border-color: var(--yellow);
+  background: var(--yellow);
+  color: var(--black);
+}
+.mi-btn--done:hover {
+  background: #ffe04d;
+}
+.mi-btn:focus-visible,
+.mi-edit-fab:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 3px;
+}
+
+body.mi-editing {
+  padding-bottom: 120px;
+}
+body.mi-editing [data-ek] {
+  outline: 1px dashed rgba(0, 189, 227, 0.75);
+  outline-offset: 3px;
+  border-radius: 2px;
+  cursor: text;
+  pointer-events: auto;
+  -webkit-user-select: text;
+  user-select: text;
+}
+body.mi-editing [data-ek-changed] {
+  outline: 2px dashed var(--pink-text);
+}
+body.mi-editing [data-ek]:hover,
+body.mi-editing [data-ek]:focus {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+body.mi-editing .cta-wave [data-ek] {
+  outline-color: rgba(0, 0, 0, 0.6);
+}
+body.mi-editing .cta-wave [data-ek]:hover,
+body.mi-editing .cta-wave [data-ek]:focus {
+  outline-color: var(--black);
+}
+body.mi-editing .btn [data-ek],
+body.mi-editing .btn[data-ek] {
+  cursor: text;
+}
+
+.mi-send {
+  width: min(640px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--panel-2);
+  color: var(--white);
+}
+.mi-send::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+.mi-send__inner {
+  display: grid;
+  gap: 14px;
+  padding: clamp(20px, 4vw, 32px);
+}
+.mi-send h2 {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 28px;
+  text-transform: uppercase;
+}
+.mi-send__intro,
+.mi-send__status {
+  margin: 0;
+  font-size: 16px;
+  color: var(--muted);
+}
+.mi-send__status:empty {
+  display: none;
+}
+.mi-send__status {
+  color: var(--yellow);
+}
+.mi-send__list {
+  margin: 0;
+  max-height: 38vh;
+  overflow: auto;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--black);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.mi-send__label {
+  font-size: 15px;
+  color: var(--muted);
+}
+.mi-send textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--black);
+  color: var(--white);
+  font: inherit;
+  font-size: 16px;
+  resize: vertical;
+}
+
+@media print {
+  .mi-edit-ui {
+    display: none;
+  }
+}
